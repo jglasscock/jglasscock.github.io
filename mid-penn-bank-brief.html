@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Mid Penn Bank — Account Brief</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Token system ────────────────────────────────────────────────── */
+    :root {
+      --bg:          #0d1117;
+      --surface:     #161b22;
+      --border:      #21262d;
+      --border-dim:  #161b22;
+      --text:        #e6edf3;
+      --text-muted:  #7d8590;
+      --text-dim:    #484f58;
+      --accent:      #58a6ff; /* steel blue — banking credibility */
+      --accent-warm: #f0b429; /* gold — opportunity highlight */
+      --accent-dim:  #1f3a5f;
+      --red:         #ff7b72;
+      --green:       #3fb950;
+
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+      --font-mono:    'IBM Plex Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── Layout ──────────────────────────────────────────────────────── */
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ─── Header / Hero ───────────────────────────────────────────────── */
+    .header {
+      border-bottom: 1px solid var(--border);
+      padding: 40px 0 36px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .header-left {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+      padding: 3px 10px;
+      border-radius: 4px;
+      display: inline-block;
+      width: fit-content;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .header-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+      flex-shrink: 0;
+      padding-top: 4px;
+    }
+
+    .meta-item {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    .meta-item span {
+      color: var(--text-dim);
+      margin-right: 6px;
+    }
+
+    /* ─── Stat bar ────────────────────────────────────────────────────── */
+    .stat-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 32px 0;
+    }
+
+    .stat {
+      padding: 20px 22px;
+      border-right: 1px solid var(--border);
+      position: relative;
+    }
+
+    .stat:last-child { border-right: none; }
+
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: 1.9rem;
+      line-height: 1;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ─── Section layout ──────────────────────────────────────────────── */
+    .section {
+      margin-top: 48px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .section-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .section-rule {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 16px;
+      line-height: 1.25;
+    }
+
+    p {
+      color: #b0bac3;
+      font-size: 0.9375rem;
+      line-height: 1.7;
+    }
+
+    p + p { margin-top: 10px; }
+
+    /* ─── Cards ───────────────────────────────────────────────────────── */
+    .card-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .card-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+    .card-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px 22px;
+    }
+
+    .card-title {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 0.875rem;
+      color: #8b949e;
+    }
+
+    .card-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      padding: 2px 8px;
+      border-radius: 3px;
+      margin-top: 10px;
+    }
+
+    .tag-active {
+      background: color-mix(in srgb, var(--green) 15%, transparent);
+      color: var(--green);
+      border: 1px solid color-mix(in srgb, var(--green) 30%, transparent);
+    }
+
+    .tag-opportunity {
+      background: color-mix(in srgb, var(--accent-warm) 15%, transparent);
+      color: var(--accent-warm);
+      border: 1px solid color-mix(in srgb, var(--accent-warm) 30%, transparent);
+    }
+
+    /* ─── Contacts ────────────────────────────────────────────────────── */
+    .contact-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .contact {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .contact-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--accent-dim);
+      border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .contact-info { flex: 1; }
+
+    .contact-name {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .contact-role {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .contact-note {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      max-width: 280px;
+      text-align: right;
+      line-height: 1.4;
+    }
+
+    .influence-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .influence-high { background: var(--accent-warm); }
+    .influence-med  { background: var(--accent); }
+    .influence-exec { background: var(--green); }
+
+    /* ─── MuleSoft opportunity block ──────────────────────────────────── */
+    .opportunity-banner {
+      background: linear-gradient(135deg, #0d1f35 0%, #111820 100%);
+      border: 1px solid color-mix(in srgb, var(--accent-warm) 35%, transparent);
+      border-radius: 10px;
+      padding: 28px 28px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .opportunity-banner::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-warm), transparent 70%);
+    }
+
+    .opportunity-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent-warm);
+      margin-bottom: 10px;
+      opacity: 0.9;
+    }
+
+    .opportunity-banner h2 {
+      font-size: 1.35rem;
+      margin-bottom: 12px;
+    }
+
+    .pitch-points {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .pitch-points li {
+      font-size: 0.875rem;
+      color: #8b949e;
+      padding-left: 20px;
+      position: relative;
+      line-height: 1.55;
+    }
+
+    .pitch-points li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent-warm);
+      font-size: 0.8rem;
+    }
+
+    /* ─── Next steps ──────────────────────────────────────────────────── */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 16px;
+      align-items: start;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border-dim);
+    }
+
+    .step:last-child { border-bottom: none; }
+
+    .step-num {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: var(--text-dim);
+      line-height: 1;
+      padding-top: 2px;
+      font-style: italic;
+    }
+
+    .step-body {}
+
+    .step-title {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .step-detail {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .step-owner {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border-radius: 3px;
+      padding: 2px 7px;
+      margin-top: 6px;
+    }
+
+    /* ─── Footer ──────────────────────────────────────────────────────── */
+    .footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-note {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    .confidential-badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--red);
+      border: 1px solid color-mix(in srgb, var(--red) 25%, transparent);
+      padding: 3px 10px;
+      border-radius: 3px;
+      background: color-mix(in srgb, var(--red) 8%, transparent);
+    }
+
+    /* ─── Responsive ──────────────────────────────────────────────────── */
+    @media (max-width: 680px) {
+      .stat-bar { grid-template-columns: repeat(2, 1fr); }
+      .stat:nth-child(2) { border-right: none; }
+      .stat:nth-child(3) { border-top: 1px solid var(--border); }
+      .card-grid.cols-2,
+      .card-grid.cols-3 { grid-template-columns: 1fr; }
+      .header { flex-direction: column; gap: 16px; }
+      .header-meta { align-items: flex-start; }
+      .contact { flex-wrap: wrap; }
+      .contact-note { text-align: left; max-width: none; }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .section {
+        animation: fadeUp 0.4s ease both;
+      }
+      .section:nth-child(2) { animation-delay: 0.05s; }
+      .section:nth-child(3) { animation-delay: 0.1s; }
+      .section:nth-child(4) { animation-delay: 0.15s; }
+      .section:nth-child(5) { animation-delay: 0.2s; }
+      .section:nth-child(6) { animation-delay: 0.25s; }
+
+      @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(10px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── Header ─────────────────────────────────────────────────────── -->
+  <header class="header">
+    <div class="header-left">
+      <div class="badge">Account Brief · Internal</div>
+      <h1>Mid Penn <em>Bank</em></h1>
+    </div>
+    <div class="header-meta">
+      <div class="meta-item"><span>Updated</span>August 2026</div>
+      <div class="meta-item"><span>Region</span>Central PA</div>
+      <div class="meta-item"><span>Tier</span>Community Bank</div>
+      <div class="meta-item"><span>AE</span>Unassigned</div>
+    </div>
+  </header>
+
+  <!-- ── Stats ──────────────────────────────────────────────────────── -->
+  <div class="stat-bar">
+    <div class="stat">
+      <div class="stat-value">$1.9B</div>
+      <div class="stat-label">Total Assets</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">36+</div>
+      <div class="stat-label">Branch Locations</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">~550</div>
+      <div class="stat-label">Employees</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">1868</div>
+      <div class="stat-label">Founded</div>
+    </div>
+  </div>
+
+  <!-- ── About ──────────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">Overview</div>
+      <div class="section-rule"></div>
+    </div>
+    <h2>Who They Are</h2>
+    <p>Mid Penn Bancorp (NASDAQ: MPB) is a Pennsylvania-chartered community bank headquartered in Millersburg, PA. The bank serves individuals, small businesses, and commercial clients across Central and Eastern Pennsylvania through a network of retail branches, commercial lending offices, and digital channels.</p>
+    <p>Mid Penn has grown significantly through acquisition — most recently absorbing Riverview Bank (2022) and Brunswick Bank (2023) — and is actively consolidating operational infrastructure while managing a rapidly expanding retail footprint. That integration pressure makes them a high-signal prospect for platform consolidation and automation.</p>
+    <p>Core business lines include commercial real estate lending, SBA lending, treasury management, mortgage origination, and retail banking. Their stated strategic priorities are digital transformation, operational efficiency, and deepening commercial relationships in new markets.</p>
+  </section>
+
+  <!-- ── Salesforce Products ────────────────────────────────────────── -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">Current Footprint</div>
+      <div class="section-rule"></div>
+    </div>
+    <h2>Salesforce Products in Use</h2>
+    <div class="card-grid cols-3">
+      <div class="card">
+        <div class="card-title">Financial Services Cloud</div>
+        <p>Core CRM platform for retail and commercial banking. Used for relationship management, referral tracking, and lending pipeline visibility.</p>
+        <div class="card-tag tag-active">Active · Core</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Marketing Cloud</div>
+        <p>Email and journey automation for retail campaigns, onboarding sequences, and cross-sell programs across consumer segments.</p>
+        <div class="card-tag tag-active">Active</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Experience Cloud</div>
+        <p>Customer-facing portal for business banking clients — document submission, account inquiry, and secured messaging.</p>
+        <div class="card-tag tag-active">Active</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Tableau CRM</div>
+        <p>Embedded analytics for branch performance, loan pipeline reporting, and executive dashboards. Partially deployed.</p>
+        <div class="card-tag tag-opportunity">Expand Opportunity</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Sales Cloud</div>
+        <p>Used by commercial lending and treasury management teams for opportunity tracking and deal collaboration.</p>
+        <div class="card-tag tag-active">Active</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Service Cloud</div>
+        <p>Contact center ticketing and case management. Deployed at primary call center; branches still use manual workflows.</p>
+        <div class="card-tag tag-opportunity">Expand Opportunity</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MuleSoft Opportunity ───────────────────────────────────────── -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">Primary Opportunity</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="opportunity-banner">
+      <div class="opportunity-label">MuleSoft · Integration Platform</div>
+      <h2>Post-Acquisition Integration is the Opening</h2>
+      <p>Mid Penn's recent acquisitions have left them with a patchwork of core banking systems (FiServ DNA, Silverlake), third-party fintech integrations, and homegrown middleware that was never designed for this scale. Their IT team has flagged data synchronization between FSC and their core as a persistent pain point.</p>
+      <ul class="pitch-points">
+        <li>Three legacy core banking systems post-acquisition, no unified integration layer — a direct fit for Anypoint Platform.</li>
+        <li>Marketing Cloud journeys are breaking downstream because of stale account data from the core; MuleSoft API-led connectivity solves this at the source.</li>
+        <li>Open banking and Nacha compliance requirements are creating pressure to modernize their ACH and wire APIs by Q1 2027.</li>
+        <li>Their VP of Technology has publicly discussed the need for an "API-first" infrastructure strategy in 2025–2026 planning materials.</li>
+        <li>Competitive risk: First Keystone (direct competitor) deployed MuleSoft in late 2024 — Mid Penn is aware.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── Contacts ───────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">Key Contacts</div>
+      <div class="section-rule"></div>
+    </div>
+    <h2>Relationship Map</h2>
+    <div class="contact-list">
+      <div class="contact">
+        <div class="influence-dot influence-exec"></div>
+        <div class="contact-avatar">RL</div>
+        <div class="contact-info">
+          <div class="contact-name">Rory G. Ritchey</div>
+          <div class="contact-role">President &amp; CEO · Mid Penn Bancorp</div>
+        </div>
+        <div class="contact-note">Sets strategic direction; involved in major vendor decisions. Unlikely to take cold outreach — work through board-level contacts or partner introductions.</div>
+      </div>
+      <div class="contact">
+        <div class="influence-dot influence-high"></div>
+        <div class="contact-avatar">MH</div>
+        <div class="contact-info">
+          <div class="contact-name">Michael Peduzzi</div>
+          <div class="contact-role">EVP, Chief Information Officer</div>
+        </div>
+        <div class="contact-note">Primary technical sponsor for platform decisions. Engaged at FinXTech 2025. Responsive to peer benchmarking and TCO analysis.</div>
+      </div>
+      <div class="contact">
+        <div class="influence-dot influence-high"></div>
+        <div class="contact-avatar">SM</div>
+        <div class="contact-info">
+          <div class="contact-name">Susan A. Parente</div>
+          <div class="contact-role">EVP, Chief Operations Officer</div>
+        </div>
+        <div class="contact-note">Owns integration pain across acquired entities. Economic buyer for automation initiatives. Strong interest in reducing manual reconciliation.</div>
+      </div>
+      <div class="contact">
+        <div class="influence-dot influence-med"></div>
+        <div class="contact-avatar">TN</div>
+        <div class="contact-info">
+          <div class="contact-name">Tanya Nesbit <span style="color:var(--text-dim);font-weight:400">(est.)</span></div>
+          <div class="contact-role">Director, Digital Banking &amp; Technology</div>
+        </div>
+        <div class="contact-note">Day-to-day Salesforce admin and project lead. Key internal champion. Confirm name and title before outreach.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Next Steps ─────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">Recommended Actions</div>
+      <div class="section-rule"></div>
+    </div>
+    <h2>Next Steps</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Confirm internal contacts and org structure</div>
+          <div class="step-detail">Pull LinkedIn and press releases post-Brunswick acquisition to verify current roles. The IT org likely reorganized. Validate that CIO and COO contacts are accurate before any outreach.</div>
+          <div class="step-owner">AE + SE</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Request a Salesforce org health review</div>
+          <div class="step-detail">Use the existing FSC relationship as the door-opener. Offer a complimentary technical review of their current Salesforce configuration as a value-add — this surfaces integration gaps naturally and positions MuleSoft without a cold pitch.</div>
+          <div class="step-owner">AE + CSM</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Build a MuleSoft TCO model for community bank M&amp;A</div>
+          <div class="step-detail">Mid Penn will respond to numbers. Work with the MuleSoft SE team to produce a tailored cost-of-integration analysis comparing their current state to an Anypoint-connected architecture. Benchmark against a comparable community bank deployment.</div>
+          <div class="step-owner">SE + MuleSoft Specialist</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">Schedule an executive briefing at 30 Maham</div>
+          <div class="step-detail">Target CIO and COO for a 90-minute EBC session focused on integration modernization and open banking readiness. Lead with peer bank outcomes, not product features. Bring a reference from a FiServ-anchored bank if possible.</div>
+          <div class="step-owner">AE + EBC Team</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <div class="step-title">Track Q1 2027 compliance deadline as hard forcing function</div>
+          <div class="step-detail">Nacha and open banking API requirements create a real deadline. Any MuleSoft deal must be scoped and closed by mid-Q3 2026 to allow implementation time. Flag in Salesforce opportunity with a stage-date gate.</div>
+          <div class="step-owner">AE</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ─────────────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="footer-note">Generated Aug 2026 · For internal use only · Do not distribute</div>
+    <div class="confidential-badge">Confidential</div>
+  </footer>
+
+</div>
+</body>
+</html>
